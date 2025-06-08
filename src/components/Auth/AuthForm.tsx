@@ -71,71 +71,71 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md bg-white shadow-xl border-0">
-        <CardHeader className="text-center pb-6">
-          <CardTitle className="text-3xl font-bold text-gray-800 mb-2">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white shadow-2xl border-0 rounded-xl">
+        <CardHeader className="text-center pb-6 pt-8">
+          <CardTitle className="text-3xl font-bold text-gray-900 mb-2">
             {isLogin ? 'Đăng Nhập' : 'Đăng Ký'}
           </CardTitle>
           <CardDescription className="text-gray-600 text-base">
             {isLogin ? 'Chào mừng bạn quay lại!' : 'Tạo tài khoản mới để bắt đầu học'}
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-6">
-          <form onSubmit={handleSubmit} className="space-y-5">
+        <CardContent className="p-8">
+          <form onSubmit={handleSubmit} className="space-y-6">
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="name" className="text-sm font-semibold text-gray-800">
                   Họ và tên
                 </Label>
                 <Input
                   id="name"
                   type="text"
                   name="name"
-                  placeholder="Nhập họ và tên"
+                  placeholder="Nhập họ và tên của bạn"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-500"
                 />
               </div>
             )}
             
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="email" className="text-sm font-semibold text-gray-800">
                 Email
               </Label>
               <Input
                 id="email"
                 type="email"
                 name="email"
-                placeholder="Nhập địa chỉ email"
+                placeholder="Nhập địa chỉ email của bạn"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                className="h-12 text-base border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-500"
               />
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+              <Label htmlFor="password" className="text-sm font-semibold text-gray-800">
                 Mật khẩu
               </Label>
               <Input
                 id="password"
                 type="password"
                 name="password"
-                placeholder="Nhập mật khẩu"
+                placeholder="Nhập mật khẩu của bạn"
                 value={formData.password}
                 onChange={handleChange}
                 required
-                className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                className="h-12 text-base border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-500"
               />
             </div>
             
             {!isLogin && (
               <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="confirmPassword" className="text-sm font-semibold text-gray-800">
                   Xác nhận mật khẩu
                 </Label>
                 <Input
@@ -146,26 +146,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
-                  className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
+                  className="h-12 text-base border-2 border-gray-200 focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-gray-500"
                 />
               </div>
             )}
             
             <Button
               type="submit"
-              className="w-full h-12 text-base font-semibold bg-primary hover:bg-primary/90 text-white mt-6"
+              className="w-full h-12 text-base font-semibold bg-primary hover:bg-primary/90 text-white mt-8 shadow-lg hover:shadow-xl transition-all duration-200"
               disabled={loading}
             >
               {loading ? 'Đang xử lý...' : (isLogin ? 'Đăng Nhập' : 'Đăng Ký')}
             </Button>
           </form>
           
-          <div className="mt-6 text-center">
-            <p className="text-gray-600 text-sm">
+          <div className="mt-8 text-center">
+            <p className="text-gray-700 text-sm">
               {isLogin ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}
               <button
                 type="button"
-                className="ml-2 text-primary hover:text-primary/80 font-medium hover:underline transition-colors"
+                className="ml-2 text-primary hover:text-primary/80 font-semibold hover:underline transition-colors"
                 onClick={() => {
                   setIsLogin(!isLogin);
                   setFormData({ name: '', email: '', password: '', confirmPassword: '' });
@@ -180,7 +180,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             <div className="mt-4 text-center">
               <button
                 type="button"
-                className="text-sm text-primary hover:text-primary/80 hover:underline transition-colors"
+                className="text-sm text-primary hover:text-primary/80 hover:underline transition-colors font-medium"
                 onClick={() => toast.info('Chức năng quên mật khẩu sẽ được cập nhật sớm!')}
               >
                 Quên mật khẩu?
