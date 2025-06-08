@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 
 interface AuthFormProps {
@@ -70,81 +71,101 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-elearning-primary via-elearning-secondary to-purple-600 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-bold">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white shadow-xl border-0">
+        <CardHeader className="text-center pb-6">
+          <CardTitle className="text-3xl font-bold text-gray-800 mb-2">
             {isLogin ? 'Đăng Nhập' : 'Đăng Ký'}
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-gray-600 text-base">
             {isLogin ? 'Chào mừng bạn quay lại!' : 'Tạo tài khoản mới để bắt đầu học'}
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <CardContent className="p-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {!isLogin && (
-              <div>
+              <div className="space-y-2">
+                <Label htmlFor="name" className="text-sm font-medium text-gray-700">
+                  Họ và tên
+                </Label>
                 <Input
+                  id="name"
                   type="text"
                   name="name"
-                  placeholder="Họ và tên"
+                  placeholder="Nhập họ và tên"
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
               </div>
             )}
             
-            <div>
+            <div className="space-y-2">
+              <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                Email
+              </Label>
               <Input
+                id="email"
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Nhập địa chỉ email"
                 value={formData.email}
                 onChange={handleChange}
                 required
+                className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             
-            <div>
+            <div className="space-y-2">
+              <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                Mật khẩu
+              </Label>
               <Input
+                id="password"
                 type="password"
                 name="password"
-                placeholder="Mật khẩu"
+                placeholder="Nhập mật khẩu"
                 value={formData.password}
                 onChange={handleChange}
                 required
+                className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
               />
             </div>
             
             {!isLogin && (
-              <div>
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="text-sm font-medium text-gray-700">
+                  Xác nhận mật khẩu
+                </Label>
                 <Input
+                  id="confirmPassword"
                   type="password"
                   name="confirmPassword"
-                  placeholder="Xác nhận mật khẩu"
+                  placeholder="Nhập lại mật khẩu"
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   required
+                  className="h-12 text-base border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20"
                 />
               </div>
             )}
             
             <Button
               type="submit"
-              className="w-full btn-gradient"
+              className="w-full h-12 text-base font-semibold bg-primary hover:bg-primary/90 text-white mt-6"
               disabled={loading}
             >
               {loading ? 'Đang xử lý...' : (isLogin ? 'Đăng Nhập' : 'Đăng Ký')}
             </Button>
           </form>
           
-          <div className="mt-4 text-center">
-            <p className="text-sm text-muted-foreground">
+          <div className="mt-6 text-center">
+            <p className="text-gray-600 text-sm">
               {isLogin ? 'Chưa có tài khoản?' : 'Đã có tài khoản?'}
               <button
                 type="button"
-                className="ml-1 text-primary hover:underline"
+                className="ml-2 text-primary hover:text-primary/80 font-medium hover:underline transition-colors"
                 onClick={() => {
                   setIsLogin(!isLogin);
                   setFormData({ name: '', email: '', password: '', confirmPassword: '' });
@@ -159,7 +180,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ onSuccess }) => {
             <div className="mt-4 text-center">
               <button
                 type="button"
-                className="text-sm text-primary hover:underline"
+                className="text-sm text-primary hover:text-primary/80 hover:underline transition-colors"
                 onClick={() => toast.info('Chức năng quên mật khẩu sẽ được cập nhật sớm!')}
               >
                 Quên mật khẩu?
