@@ -166,9 +166,10 @@ const CoursesList: React.FC<CoursesListProps> = ({ onNavigate }) => {
                     </span>
                     <Button
                       onClick={() => onNavigate('course-detail', course.id)}
-                      variant={enrolled ? "outline" : "default"}
+                      variant="default"
+                      className="bg-blue-600 hover:bg-blue-700 text-white"
                     >
-                      {enrolled ? 'Xem chi tiết' : 'Xem khóa học'}
+                      Xem khóa học
                     </Button>
                   </div>
                 </div>
